@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "dh-access"
+version = "0.1.0"
+description = ""
+authors = ["JohnSoi <un.perso@yandex.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+python-jose = {extras = ["cryptography"], version = "^3.5.0"}
+passlib = {extras = ["bcrypt"], version = "^1.7.4"}
+#dh-platform = {git = "https://github.com/JohnSoi/dh-platform.git"}
+
+[tool.poetry.group.dev.dependencies]
+dh-platform = {path = "../dh-platform"}
+
+[tool.poetry.group.docs.dependencies]
+sphinx = "^8.2.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

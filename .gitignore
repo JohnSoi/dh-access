@@ -1,0 +1,7 @@
+poetry.lock
+.venv
+venv
+.idea
+env
+*.pyc
+docs/_build
