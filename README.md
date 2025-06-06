@@ -15,7 +15,6 @@ poetry add git+https://github.com/JohnSoi/dh-access.git
 poetry add ../dh-access --group dev
 ```
 
-
 ## Состав
 
 <pre>
@@ -23,11 +22,3 @@ dh_access
 ├── models
 └── settings
 </pre>
-
-## Полезные команды 
-
-* Запуск сервера
-
-```commandline
-uvicorn dh_education.main:app --reload
-```

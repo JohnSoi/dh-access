@@ -1,0 +1,28 @@
+name: Security Check
+
+on:
+  schedule:
+    - cron: "0 0 * * 1"  # Раз в неделю
+  push:
+    branches: [ main ]
+
+jobs:
+  bandit:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
+    - name: Install Bandit
+      run: pip install bandit
+    - name: Run Bandit security scan
+      run: bandit -r src/ -x tests/ -ll
+
+  dependency_check:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Run Dependency Review
+      uses: actions/dependency-review-action@v3

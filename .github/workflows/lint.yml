@@ -1,0 +1,28 @@
+name: Linting
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.12"
+    - name: Install poetry
+      run: |
+        pip install poetry
+    - name: Install dependencies
+      run: |
+        poetry update
+    - name: Run Black
+      run: poetry run black --check dh_platform/ tests/
+    - name: Run PyLint
+      run: poetry run pylint dh_platform/ tests/ --max-line-length 120
+
+    - name: Run isort
+      run: poetry run isort --check-only dh_platform/ tests/
+    - name: Run pyright
+      run: poetry run pyright dh_platform/

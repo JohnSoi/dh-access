@@ -8,34 +8,28 @@ from pydantic import Extra
 from pydantic_settings import BaseSettings
 
 
-class BaseAppSettings(BaseSettings):
+class AccessSettings(BaseSettings):
     """
-    Базовые настройки приложений
+    Настройки доступа
 
     Attributes:
-        APP_ENV (str): Тип окружения
-        DEBUG (bool): Режим отладки
-        PROJECT_NAME (str): Название проекта
-        VERSION (str): Версия проекта
+        SECRET_APP (str): Секрет приложения
     Warnings:
         Данные переменные должны быть описаны в файле .env
     """
 
-    APP_ENV: str = "production"
-    DEBUG: bool = False
-    PROJECT_NAME: str
-    VERSION: str
+    SECRET_APP: str
 
     class Config:
         """Класс конфигурации настроек"""
 
-        env_prefix = "CORE_"
+        env_prefix = "AUTH_"
         env_file = ".env"
         extra = Extra.ignore
 
 
 @lru_cache
-def get_core_settings() -> BaseAppSettings:
+def get_access_settings() -> AccessSettings:
     """
     Получение объекта базовых настроек
 
@@ -46,10 +40,12 @@ def get_core_settings() -> BaseAppSettings:
 
         >>> from pydantic import Field
         >>> from pydantic_settings import BaseSettings
-        >>> from dh_platform1.settings import get_core_settings
+        >>> from dh_platform.settings import get_core_settings, BaseAppSettings
+        >>> from dh_access.settings import get_access_settings, AccessSettings
         >>>
         >>> class AllSettings(BaseSettings):
         ...     core: BaseAppSettings = Field(default_factory=get_core_settings)
+        ...     access: AccessSettings = Field(default_factory=get_access_settings)
         ...
         ...     class Config:
         ...         env_nested_delimiter = "__"
@@ -58,4 +54,7 @@ def get_core_settings() -> BaseAppSettings:
         >>> def get_all_settings() -> AllSettings:
         ...    return AllSettings()
     """
-    return BaseAppSettings()
+    return AccessSettings()
+
+
+__all__: list[str] = ["get_access_settings", "AccessSettings"]
