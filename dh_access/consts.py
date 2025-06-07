@@ -19,3 +19,5 @@ class PermissionAccessLevel(IntEnum):
     READ = 1
     WRITE = 2
     DELETE = 3
+
+GUEST_ROLE_NAME: str = "guest"

@@ -9,10 +9,14 @@ readme = "README.md"
 python = "^3.12"
 python-jose = {extras = ["cryptography"], version = "^3.5.0"}
 passlib = {extras = ["bcrypt"], version = "^1.7.4"}
-#dh-platform = {git = "https://github.com/JohnSoi/dh-platform.git"}
+dh-platform = {git = "https://github.com/JohnSoi/dh-platform.git"}
+dh-users = {git = "https://github.com/JohnSoi/dh-users.git"}
 
 [tool.poetry.group.dev.dependencies]
-dh-platform = {path = "../dh-platform"}
+black = "^25.1.0"
+isort = "^6.0.1"
+pyright = "^1.1.401"
+pylint = "^3.3.7"
 
 [tool.poetry.group.docs.dependencies]
 sphinx = "^8.2.3"
@@ -20,3 +24,9 @@ sphinx = "^8.2.3"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.isort]
+profile = "black"
+line_length = 80
+multi_line_output = 3
+include_trailing_comma = true

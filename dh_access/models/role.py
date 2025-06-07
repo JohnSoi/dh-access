@@ -3,6 +3,7 @@
 __author__: str = "Старков Е.П."
 
 from dh_platform.models import BaseModel, IDMixin, TimestampMixin
+from dh_users.models import UserModel
 from sqlalchemy import Column, ForeignKey, Table, String
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column, relationship
@@ -27,4 +28,4 @@ class Role(BaseModel, IDMixin, TimestampMixin):
     description: Mapped[str] = mapped_column(String(255))
     permissions: Mapped[dict[str: int]] = Column(JSONB)
 
-    users: Mapped[list] = relationship("User", secondary=user_role_association, back_populates="roles")
+    users: Mapped[list] = relationship(UserModel, secondary=user_role_association)

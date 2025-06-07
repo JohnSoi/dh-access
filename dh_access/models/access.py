@@ -8,7 +8,7 @@ from dh_platform.models import BaseModel, IDMixin, TimestampMixin
 from sqlalchemy import Column, ForeignKey, String, DateTime, Integer
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from ..consts import PermissionAccessLevel
+from dh_access.consts import PermissionAccessLevel, GUEST_ROLE_NAME
 
 
 class Access(BaseModel, IDMixin, TimestampMixin):
@@ -23,14 +23,14 @@ class Access(BaseModel, IDMixin, TimestampMixin):
     role_id = Column(Integer, ForeignKey("role.id"))
 
     # Relationships
-    user = relationship("User", back_populates="access")
+    user = relationship("User")
     role = relationship("Role")
 
     @property
     def access_level(self) -> str:
         """Вычисляемый уровень доступа"""
         if not self.role:
-            return "guest"
+            return GUEST_ROLE_NAME
 
         return self.role.name.lower()
 
