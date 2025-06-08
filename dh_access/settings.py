@@ -4,7 +4,6 @@ __author__: str = "Старков Е.П."
 
 from functools import lru_cache
 
-from pydantic import Extra
 from pydantic_settings import BaseSettings
 
 
@@ -25,7 +24,7 @@ class AccessSettings(BaseSettings):
 
         env_prefix = "AUTH_"
         env_file = ".env"
-        extra = Extra.ignore
+        extra = "ignore"
 
 
 @lru_cache
@@ -54,7 +53,7 @@ def get_access_settings() -> AccessSettings:
         >>> def get_all_settings() -> AllSettings:
         ...    return AllSettings()
     """
-    return AccessSettings()
+    return AccessSettings() # type: ignore[call-arg]
 
 
 __all__: list[str] = ["get_access_settings", "AccessSettings"]

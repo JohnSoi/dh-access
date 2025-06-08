@@ -3,8 +3,11 @@
 __author__: str = "Старков Е.П."
 
 from dh_platform.services import BaseService
+
 from dh_access.models import RoleModel
 
 
 class RoleService(BaseService):
-    _MODEL: RoleModel = RoleModel
+    """Сервис ролей"""
+
+    _MODEL = RoleModel

@@ -18,11 +18,11 @@ jobs:
       run: |
         poetry update
     - name: Run Black
-      run: poetry run black --check dh_platform/ tests/
+      run: poetry run black --check dh_access/ tests/
     - name: Run PyLint
-      run: poetry run pylint dh_platform/ tests/ --max-line-length 120
+      run: poetry run pylint dh_access/ tests/ --max-line-length 120
 
     - name: Run isort
-      run: poetry run isort --check-only dh_platform/ tests/
+      run: poetry run isort --check-only dh_access/ tests/
     - name: Run pyright
-      run: poetry run pyright dh_platform/
+      run: poetry run pyright dh_access/

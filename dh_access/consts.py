@@ -15,9 +15,11 @@ class PermissionAccessLevel(IntEnum):
         WRITE (int): Доступ на запись
         DELETE (int): Доступ на удалить
     """
+
     DENIED = 0
     READ = 1
     WRITE = 2
     DELETE = 3
+
 
 GUEST_ROLE_NAME: str = "guest"

@@ -5,13 +5,15 @@ __author__: str = "Старков Е.П."
 from datetime import datetime
 
 from dh_platform.models import BaseModel, IDMixin, TimestampMixin
-from sqlalchemy import Column, ForeignKey, String, DateTime, Integer
+from sqlalchemy import Column, DateTime, ForeignKey, Integer, String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from dh_access.consts import PermissionAccessLevel, GUEST_ROLE_NAME
+from dh_access.consts import GUEST_ROLE_NAME, PermissionAccessLevel
 
 
 class Access(BaseModel, IDMixin, TimestampMixin):
+    """Модель доступа"""
+
     login: Mapped[str] = mapped_column(String(50), unique=True, index=True)
     hashed_password: Mapped[str] = mapped_column(String(255), nullable=False)
     last_login: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)

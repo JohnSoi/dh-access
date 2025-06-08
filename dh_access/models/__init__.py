@@ -2,5 +2,5 @@
 
 __author__: str = "Старков Е.П."
 
-from .role import Role as RoleModel
 from .access import Access as AccessModel
+from .role import Role as RoleModel
