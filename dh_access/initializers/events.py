@@ -9,8 +9,6 @@ from dh_access.services import AccessService
 
 
 async def _validate_auth_data(data: UserValidateEvent) -> None:
-    import pydevd_pycharm
-    pydevd_pycharm.settrace('localhost', port=8888, stdoutToServer=True, stderrToServer=True)
     login: str = data.login
 
     if not login or (MIN_LOGIN_LEN > len(login) < MAX_LOGIN_LEN):
