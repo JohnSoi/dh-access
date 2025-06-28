@@ -11,6 +11,8 @@ python-jose = {extras = ["cryptography"], version = "^3.5.0"}
 passlib = {extras = ["bcrypt"], version = "^1.7.4"}
 dh-platform = {git = "https://github.com/JohnSoi/dh-platform.git"}
 dh-users = {git = "https://github.com/JohnSoi/dh-users.git"}
+fastapi = "^0.115.12"
+bcrypt = "^4.3.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "^25.1.0"

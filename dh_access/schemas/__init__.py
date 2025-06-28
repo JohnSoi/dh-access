@@ -3,3 +3,4 @@
 __author__: str = "Старков Е.П."
 
 from .auth import *
+from .role import RoleData

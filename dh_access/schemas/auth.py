@@ -40,4 +40,9 @@ class AccessAddData(AccessValidateData):
     user_id: int
 
 
+class AccessInsertData(AccessPublicData):
+    hashed_password: str
+    user_id: int
+
+
 __all__: list[str] = ["AccessPublicData", "AccessValidateData", "AccessAddData"]

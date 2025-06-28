@@ -23,3 +23,6 @@ class PermissionAccessLevel(IntEnum):
 
 
 GUEST_ROLE_NAME: str = "guest"
+
+MIN_LOGIN_LEN: int = 4
+MAX_LOGIN_LEN: int = 50

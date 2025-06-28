@@ -5,6 +5,7 @@ __author__: str = "Старков Е.П."
 
 import logging
 
+from dh_access.schemas import RoleData
 from dh_access.services import RoleService
 from dh_access.types import RolesData
 
@@ -42,11 +43,11 @@ async def role_init(roles_data: RolesData) -> None:
 
         for role in no_added_roles:
             await RoleService.create(
-                {
+                RoleData(**{
                     "name": role,
                     "permissions": roles_data[role]["permissions"],
                     "description": roles_data[role]["description"],
-                }
+                })
             )
     except Exception as e:
         logger.info("Ошибка при добавлении роли: %s", e)
