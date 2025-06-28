@@ -13,3 +13,13 @@ class RoleData(BaseModel):
     name: str
     permissions: dict
     description: str
+    
+
+class RoleIdData(BaseModel):
+    """
+    Данные о роли
+
+    Attributes:
+        role_id (int): Идентификатор роли
+    """
+    role_id: int

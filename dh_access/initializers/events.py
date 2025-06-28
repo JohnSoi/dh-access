@@ -23,6 +23,7 @@ async def _create_access_data(data: UserAddEvent) -> None:
         'login': data.login,
         'user_id': data.user_id,
         'hashed_password': hash_password(data.password),
+        'role_id': data.role,
     }))
 
 
