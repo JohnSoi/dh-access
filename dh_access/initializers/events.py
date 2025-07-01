@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from dh_platform.patterns.message_bus import message_bus
 from dh_users.schemas.events import UserValidateEvent, UserAddEvent, UserDeleteEvent
 
@@ -31,8 +33,14 @@ async def _create_access_data(data: UserAddEvent) -> None:
 async def _delete_access_data(data: UserDeleteEvent) -> None:
     access_data: AccessModel | None = await AccessService.get_one_by_filter(user_id=data.user_id)
 
-    if access_data:
+    if not access_data:
+        return
+
+    if data.force_delete:
         await AccessService.delete(access_data.id)
+    else:
+        access_data.date_deactivate = datetime.now()
+        await AccessService.update(access_data)
 
 
 def access_event_subscribe() -> None:
