@@ -13,11 +13,17 @@ class AccessSettings(BaseSettings):
 
     Attributes:
         SECRET_APP (str): Секрет приложения
+        ACCESS_TOKEN_EXPIRE_MINUTES (int): Срок жизни токена доступа
+        REFRESH_TOKEN_EXPIRE_DAYS (int): Срок жизни токена обновления
+        ALGORITHM (str): Алгоритм шифрования токена
     Warnings:
         Данные переменные должны быть описаны в файле .env
     """
 
     SECRET_APP: str
+    ACCESS_TOKEN_EXPIRE_MINUTES : int
+    REFRESH_TOKEN_EXPIRE_DAYS : int
+    ALGORITHM: str
 
     class Config:
         """Класс конфигурации настроек"""
@@ -56,4 +62,7 @@ def get_access_settings() -> AccessSettings:
     return AccessSettings() # type: ignore[call-arg]
 
 
-__all__: list[str] = ["get_access_settings", "AccessSettings"]
+access_settings: AccessSettings = get_access_settings()
+
+
+__all__: list[str] = ["get_access_settings", "AccessSettings", "access_settings"]

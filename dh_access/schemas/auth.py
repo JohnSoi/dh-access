@@ -2,6 +2,8 @@
 
 __author__: str = "Старков Е.П."
 
+from datetime import datetime
+
 from pydantic import BaseModel
 
 
@@ -45,4 +47,22 @@ class AccessInsertData(AccessPublicData):
     user_id: int
 
 
-__all__: list[str] = ["AccessPublicData", "AccessValidateData", "AccessAddData"]
+class RefreshTokenData(BaseModel):
+    refresh_token: str
+
+
+class LoginDataOut(RefreshTokenData):
+    access_token: str
+    token_type: str
+
+
+class AccessAttemptData(BaseModel):
+    id: int
+    failed_attempts: int | None
+    last_login: datetime | None
+
+
+__all__: list[str] = [
+    "AccessPublicData", "AccessValidateData", "AccessAddData", "AccessInsertData", "LoginDataOut",
+    "AccessAttemptData", "RefreshTokenData"
+]

@@ -2,7 +2,7 @@
 
 __author__: str = "Старков Е.П."
 
-from enum import IntEnum
+from enum import IntEnum, StrEnum
 
 
 class PermissionAccessLevel(IntEnum):
@@ -26,3 +26,10 @@ GUEST_ROLE_NAME: str = "guest"
 
 MIN_LOGIN_LEN: int = 4
 MAX_LOGIN_LEN: int = 50
+
+MAX_LOGIN_TRY: int = 5
+
+
+class TokenType(StrEnum):
+    ACCESS = "access"
+    REFRESH = "refresh"
